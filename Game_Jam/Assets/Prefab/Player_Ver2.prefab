@@ -112,6 +112,7 @@ MonoBehaviour:
     m_Bits: 72
   boxcastDistance: 0.43
   forwardJumpSpeed: 6
+  canJump: 0
   interactables:
     serializedVersion: 2
     m_Bits: 0
@@ -145,7 +146,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.01495063, y: 0.1503223}
