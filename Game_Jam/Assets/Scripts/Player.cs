@@ -98,7 +98,6 @@ public class Player : MonoBehaviour, IGravityBoxClient
         {
             y = groundedVelocity;
             isJumping = false;
-            jumped = false; // Reset jump status when grounded
         }
         else if (isJumping && y <= 0)
         {
