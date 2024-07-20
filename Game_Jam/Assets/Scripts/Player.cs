@@ -1,5 +1,7 @@
 using System;
 using System.Linq.Expressions;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -33,8 +35,19 @@ public class Player : MonoBehaviour, IGravityBoxClient
     float x;
     Vector2 targetVelocity;
     Vector2 moveVelocity;
-    bool canJump = false;
+    public bool canJump = false;
     bool jumped = false;
+
+
+    [SerializeField] LayerMask interactables;
+    [SerializeField] float interactableDistance =1f;
+    
+    float previous_X = -3;
+    Vector2 interactDirection;
+
+    PullBox currentPullBox;
+
+    bool canPush;
 
     void Start()
     {
@@ -42,6 +55,7 @@ public class Player : MonoBehaviour, IGravityBoxClient
         boxCollider2D = GetComponent<BoxCollider2D>();
         SetUpJumpProperties();
         InputManager.Instance.OnJump += HandelJump;
+        InputManager.Instance.OnInteract += HandelInteraction;
     }
 
     private void HandelJump(object sender, EventArgs e)
@@ -81,6 +95,19 @@ public class Player : MonoBehaviour, IGravityBoxClient
         rb.velocity = new Vector2(moveVelocity.x, y);
 
         Handelgravity();
+
+
+
+        if(x != 0)
+        {
+            previous_X = x;
+            interactDirection = new Vector2(previous_X,0);
+
+        }
+
+
+
+
     }
 
     void SetUpJumpProperties()
@@ -118,5 +145,56 @@ public class Player : MonoBehaviour, IGravityBoxClient
     public void EnableJump()
     {
         canJump = true;
+    }
+
+    public Rigidbody2D GetRigidbody2D()
+    {
+        return rb;
+    }
+
+    void HandelInteraction(object sender, EventArgs e)
+    {
+
+        if(currentPullBox != null)
+        {
+            currentPullBox.Interact(this);
+            currentPullBox = null;
+
+        }
+
+
+        RaycastHit2D hit2D = Physics2D.Raycast(transform.position , interactDirection  , interactableDistance , interactables );
+
+
+
+        if(hit2D.collider != null)
+        {
+            if(hit2D.transform.TryGetComponent<IInteractable>(out IInteractable interactable))
+            {
+                if(interactable is PullBox && canPush)
+                {
+                    if(currentPullBox == null)
+                    {
+                        interactable.Interact(this);
+                        currentPullBox = interactable as PullBox;
+
+                    }
+
+                }
+                else{
+                    
+                        interactable.Interact(this);
+                        
+
+                }
+                
+            }
+        }
+    }
+
+
+    public void EnablePushAbility()
+    {
+        canPush = true;
     }
 }
