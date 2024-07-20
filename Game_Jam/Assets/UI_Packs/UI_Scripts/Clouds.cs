@@ -26,14 +26,14 @@ public class Clouds : MonoBehaviour
         {
 
             rectTransform.anchoredPosition += Vector2.left * speed * Time.deltaTime;
-            Debug.Log("Cloud position: " + rectTransform.anchoredPosition);
+            // Debug.Log("Cloud position: " + rectTransform.anchoredPosition);
 
             if (rectTransform.anchoredPosition.x < resetPosition)
             {
                 Vector2 newPosition = rectTransform.anchoredPosition;
                 newPosition.x = startPosition;
                 rectTransform.anchoredPosition = newPosition;
-                Debug.Log("Cloud reset to: " + rectTransform.anchoredPosition);
+                // Debug.Log("Cloud reset to: " + rectTransform.anchoredPosition);
             }
         }
     }

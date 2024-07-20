@@ -30,6 +30,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         transitions = transitionsContainer.GetComponentsInChildren<SceneTransition>();
+        MusicManager.Instance.PlayMusic("MenuMusic");
     }
  
     public void LoadScene(string sceneName, string transitionName)
