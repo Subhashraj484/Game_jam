@@ -1,15 +1,14 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq.Expressions;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IGravityBoxClient
 {
     // Start is called before the first frame update
 
     Rigidbody2D rb;
     BoxCollider2D boxCollider2D;
-
 
     [SerializeField] float maxJumpHeight;
     [SerializeField] float maxJumpTime;
@@ -22,7 +21,6 @@ public class Player : MonoBehaviour
     float y;
     bool isJumping;
 
-
     [SerializeField] float accleration;
     [SerializeField] float deccleration;
     [SerializeField] float maxSpeed;
@@ -31,9 +29,13 @@ public class Player : MonoBehaviour
 
     [SerializeField] LayerMask platformLayer;
     [SerializeField] float boxcastDistance = 1f;
+    [SerializeField] float forwardJumpSpeed = 2f; // New variable for forward speed during jump
     float x;
     Vector2 targetVelocity;
     Vector2 moveVelocity;
+    bool canJump = false;
+    bool jumped = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -44,86 +46,78 @@ public class Player : MonoBehaviour
 
     private void HandelJump(object sender, EventArgs e)
     {
-         y = initialVelocity;
-        isJumping = true;
-        Debug.Log("lskdvb");
-
+        if (canJump && !jumped)
+        {
+            y = initialVelocity;
+            isJumping = true;
+            jumped = true;
+            moveVelocity.x = forwardJumpSpeed * Mathf.Sign(x); // Apply forward motion during jump
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         x = InputManager.Instance.Horizontal;
-        float currentSpeed = isGrounded?maxSpeed : airSpeed;
-        
-        if(Mathf.Abs(x) > 0.1f )
+        float currentSpeed = isGrounded ? maxSpeed : airSpeed;
+
+        if (Mathf.Abs(x) > 0.1f)
         {
-            targetVelocity = new Vector2(x,0)*currentSpeed;
+            targetVelocity = new Vector2(x, 0) * currentSpeed;
         }
         else
         {
             targetVelocity = Vector2.zero;
         }
-        float currentAccleration =  (Mathf.Abs(x) > 0.1f)?accleration : deccleration ;
 
-        moveVelocity = Vector2.Lerp(moveVelocity , targetVelocity ,currentAccleration*Time.deltaTime);
+        float currentAccleration = (Mathf.Abs(x) > 0.1f) ? accleration : deccleration;
 
+        // Adjust horizontal velocity only if not jumping
+        if (!isJumping)
+        {
+            moveVelocity = Vector2.Lerp(moveVelocity, targetVelocity, currentAccleration * Time.deltaTime);
+        }
 
-        rb.velocity = new Vector2(moveVelocity.x , y );
-
+        rb.velocity = new Vector2(moveVelocity.x, y);
 
         Handelgravity();
-
-
     }
-
-
-
 
     void SetUpJumpProperties()
     {
-        timetoApex = maxJumpTime/2;
-        initialVelocity = 2*maxJumpHeight / timetoApex;
-        gravity = -2*maxJumpHeight / Mathf.Pow(timetoApex , 2);
-
+        timetoApex = maxJumpTime / 2;
+        initialVelocity = 2 * maxJumpHeight / timetoApex;
+        gravity = -2 * maxJumpHeight / Mathf.Pow(timetoApex, 2);
     }
-
 
     void Handelgravity()
     {
-        
+        isGrounded = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0, Vector2.down, boxcastDistance, platformLayer);
 
-       
-        isGrounded = Physics2D.BoxCast(boxCollider2D.bounds.center , boxCollider2D.bounds.size , 0 , Vector2.down , boxcastDistance , platformLayer);
-
-        if(isGrounded && y <= 0 )
+        if (isGrounded && y <= 0)
         {
             y = groundedVelocity;
             isJumping = false;
+            jumped = false; // Reset jump status when grounded
         }
-        else
-        if(isJumping && y <= 0 )
+        else if (isJumping && y <= 0)
         {
-            float perviousVelocity = y ;
-            float newVelcity = perviousVelocity + (gravity*fallGravityMultiplayer);
+            float perviousVelocity = y;
+            float newVelcity = perviousVelocity + (gravity * fallGravityMultiplayer);
             float nextvelocity = perviousVelocity + newVelcity * 0.5f * Time.deltaTime;
             y = nextvelocity;
-
-           
         }
         else
         {
-            // y += gravity*Time.deltaTime;
-            float perviousVelocity = y ;
+            float perviousVelocity = y;
             float newVelcity = perviousVelocity + gravity;
             float nextvelocity = perviousVelocity + newVelcity * 0.5f * Time.deltaTime;
             y = nextvelocity;
-
         }
-
- 
-
-        
     }
 
+    public void EnableJump()
+    {
+        canJump = true;
+    }
 }
