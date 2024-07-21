@@ -89,7 +89,7 @@ public class Player : MonoBehaviour, IGravityBoxClient , IPreassueSwitchClient
             y = initialVelocity;
             isJumping = true;
             jumped = true;
-            moveVelocity.x = forwardJumpSpeed * Mathf.Sign(x); 
+            moveVelocity.x = forwardJumpSpeed *x; 
             OnPlayerJump?.Invoke(this , EventArgs.Empty);
         }
     }
