@@ -17,13 +17,14 @@ public class Onepressureswitch : MonoBehaviour
 
 
     private void OnTriggerEnter2D(Collider2D other) {
-        
+        Debug.Log("007");
         if(other.TryGetComponent<IPreassueSwitchClient>(out IPreassueSwitchClient component))
         {
-            
+            Debug.Log("TGPT");
             Interact();
         }
     }
+
 
     /*private void OnTriggerExit2D(Collider2D other) {
         
@@ -34,5 +35,6 @@ public class Onepressureswitch : MonoBehaviour
         }
 
     }*/
+
 }
 
