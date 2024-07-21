@@ -8,11 +8,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Platfrom
+  - 
   - Water
   - UI
-  - Triangle Platfrom
-  - Interactables
+  - 
+  - 
   - 
   - 
   - 
@@ -40,10 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: 1
-    uniqueID: 3172533113
-    locked: 0
-  - name: 2
-    uniqueID: 1709600445
     locked: 0
