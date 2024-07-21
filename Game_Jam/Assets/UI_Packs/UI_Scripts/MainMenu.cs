@@ -10,17 +10,8 @@ public class MainMenu : MonoBehaviour
     public Slider musicSlider;
     public Slider sfxSlider;
     public GameObject SettingsPanel;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject PausePanel;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void PlayGame()
     {
         LevelManager.Instance.LoadScene("TestTransition", "CrossFade");
@@ -39,6 +30,16 @@ public class MainMenu : MonoBehaviour
     public void SettingPanel()//enabling setting panel
     {
         SettingsPanel.SetActive(true);
+        SoundManager.Instance.PlaySound2D("Buttons");
+    }
+    public void PauseMenu()//enabling the pause menu
+    {
+        PausePanel.SetActive(true);
+        SoundManager.Instance.PlaySound2D("Buttons");
+    }
+    public void BackOfPauseMenu()//disabling pausse menu
+    {
+        PausePanel.SetActive(false);
         SoundManager.Instance.PlaySound2D("Buttons");
     }
     public void BackOfSettings()//disabling setting panel
