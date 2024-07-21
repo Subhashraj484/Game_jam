@@ -101,9 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec5f48580393e347b2a38fb82b9f2d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxJumpHeight: 2.5
+  maxJumpHeight: 1
   maxJumpTime: 0.5
-  accleration: 4
+  accleration: 3.5
   deccleration: 8
   maxSpeed: 12
   airSpeed: 1
@@ -112,13 +112,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 72
   boxcastDistance: 0.5
-  forwardJumpSpeed: 6
+  forwardJumpSpeed: 3
   canJump: 1
   interactables:
     serializedVersion: 2
     m_Bits: 64
   interactableDistance: 1
-  canDash: 1
+  canDash: 0
   dashSpeed: 50
   dashTime: 0.1
 --- !u!61 &2418828781574628183

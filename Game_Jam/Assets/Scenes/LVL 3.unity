@@ -2082,26 +2082,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1132483066349063273, guid: 9bbb1a672e3041c47ad193f601d4ac49, type: 3}
-      propertyPath: canDash
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1132483066349063273, guid: 9bbb1a672e3041c47ad193f601d4ac49, type: 3}
-      propertyPath: accleration
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1132483066349063273, guid: 9bbb1a672e3041c47ad193f601d4ac49, type: 3}
-      propertyPath: maxJumpHeight
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1132483066349063273, guid: 9bbb1a672e3041c47ad193f601d4ac49, type: 3}
-      propertyPath: forwardJumpSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1132483066349063273, guid: 9bbb1a672e3041c47ad193f601d4ac49, type: 3}
-      propertyPath: platformLayer.m_Bits
-      value: 72
-      objectReference: {fileID: 0}
     - target: {fileID: 2514285019753736757, guid: 9bbb1a672e3041c47ad193f601d4ac49, type: 3}
       propertyPath: m_Name
       value: Player_Ver2
