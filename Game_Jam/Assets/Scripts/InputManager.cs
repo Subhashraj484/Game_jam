@@ -1,4 +1,4 @@
-
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using System;
 
@@ -21,8 +21,6 @@ public class InputManager : MonoBehaviour
     private void Update() {
         horizontal = Input.GetAxis("Horizontal");
 
-
-
         if(Input.GetKeyDown(KeyCode.Space))
         {
             OnJump?.Invoke(this , EventArgs.Empty);
@@ -39,6 +37,16 @@ public class InputManager : MonoBehaviour
             OnDash?.Invoke(this , EventArgs.Empty);
             
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+           ReloadGame();
+        }
+        
+    }
+    public void ReloadGame()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 
 

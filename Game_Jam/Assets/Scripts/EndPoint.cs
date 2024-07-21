@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndPoint : MonoBehaviour
 {
@@ -19,10 +20,17 @@ public class EndPoint : MonoBehaviour
                 other.transform.GetComponent<Player>().EnableJump();
             }
 
+            if(count == 3)
+            {
+                SceneManager.LoadScene("LVL2");
+            }
+
             StartCoroutine(Delay());
+
 
         }
     }
+
 
 
     IEnumerator Delay()

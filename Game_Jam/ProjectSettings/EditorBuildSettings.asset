@@ -11,4 +11,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/UI_Packs/TestTransition.unity
     guid: 541f6d5957a0cd441bd5981d4753ce34
+  - enabled: 1
+    path: Assets/Scenes/LVL0.unity
+    guid: 38fbd9ad728eb5b49a1c970f9873c404
+  - enabled: 1
+    path: Assets/Scenes/LVL1.unity
+    guid: 051230140d52131498cf7ef6e7ab7b03
+  - enabled: 1
+    path: Assets/Scenes/LVL2.unity
+    guid: a0eaed0127dc8ea4e828e320cfc6d0a1
+  - enabled: 1
+    path: Assets/Scenes/LVL3.unity
+    guid: 4a6f687e0fe6e8445ab29b1f0f59d22d
+  - enabled: 1
+    path: Assets/Scenes/LVL4.unity
+    guid: a57619962965dba4cb44021e16b674db
   m_configObjects: {}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DashEndPoint : MonoBehaviour
 {
@@ -22,6 +23,10 @@ public class DashEndPoint : MonoBehaviour
             if(count == 1)
             {
                 other.transform.GetComponent<Player>().EnableDash();
+            }
+             if(count == 3)
+            {
+                SceneManager.LoadScene("LVL4");
             }
 
             StartCoroutine(Delay());

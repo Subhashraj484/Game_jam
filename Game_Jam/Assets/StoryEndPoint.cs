@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StoryEndPoint : MonoBehaviour
 {
@@ -34,6 +34,10 @@ public class StoryEndPoint : MonoBehaviour
             if(count == 2)
             {
                 OnSecond?.Invoke();
+            }
+             if(count == 3)
+            {
+                SceneManager.LoadScene("LVL1");
             }
 
             StartCoroutine(Delay());

@@ -3041,7 +3041,7 @@ GameObject:
   - component: {fileID: 1378585478}
   - component: {fileID: 1378585477}
   - component: {fileID: 1378585476}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EndPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3147,7 +3147,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a0b6fc3bd4e8b454196e82132261fe8d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 168c7582bdd334c48892d9b2aa75d996, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3167,7 +3167,7 @@ Transform:
   m_GameObject: {fileID: 1378585475}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.35, y: -1.614, z: 0}
+  m_LocalPosition: {x: 8.35, y: -2.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4878,9 +4878,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1132483066349063273, guid: 9bbb1a672e3041c47ad193f601d4ac49, type: 3}
+      propertyPath: maxJumpTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132483066349063273, guid: 9bbb1a672e3041c47ad193f601d4ac49, type: 3}
+      propertyPath: maxJumpHeight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132483066349063273, guid: 9bbb1a672e3041c47ad193f601d4ac49, type: 3}
+      propertyPath: boxcastDistance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132483066349063273, guid: 9bbb1a672e3041c47ad193f601d4ac49, type: 3}
+      propertyPath: forwardJumpSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418828781574628183, guid: 9bbb1a672e3041c47ad193f601d4ac49, type: 3}
+      propertyPath: m_Size.y
+      value: 1.2456286
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418828781574628183, guid: 9bbb1a672e3041c47ad193f601d4ac49, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418828781574628183, guid: 9bbb1a672e3041c47ad193f601d4ac49, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.01718536
+      objectReference: {fileID: 0}
     - target: {fileID: 2514285019753736757, guid: 9bbb1a672e3041c47ad193f601d4ac49, type: 3}
       propertyPath: m_Name
       value: Player_Ver2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5435581516667795254, guid: 9bbb1a672e3041c47ad193f601d4ac49, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

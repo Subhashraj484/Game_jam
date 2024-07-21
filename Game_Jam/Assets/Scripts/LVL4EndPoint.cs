@@ -1,10 +1,11 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GainPushAbilityEndPoint : MonoBehaviour
+public class LVL4EndPoint : MonoBehaviour
 {
- [SerializeField] Transform startPoint;
+   [SerializeField] Transform startPoint;
     int count =0;
     Collider2D player;
 
@@ -13,12 +14,7 @@ public class GainPushAbilityEndPoint : MonoBehaviour
         {
             player = other;
             count++;
-
-            if(count == 1)
-            {
-                other.transform.GetComponent<Player>().EnablePushAbility();
-            }
-            if(count == 3)
+            if(count == 3*2)
             {
                 SceneManager.LoadScene("LVL3");
             }
@@ -26,7 +22,6 @@ public class GainPushAbilityEndPoint : MonoBehaviour
             StartCoroutine(Delay());
 
         }
-        
     }
 
 

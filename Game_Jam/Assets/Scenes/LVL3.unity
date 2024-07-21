@@ -2082,9 +2082,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2418828781574628183, guid: 9bbb1a672e3041c47ad193f601d4ac49, type: 3}
+      propertyPath: m_Size.y
+      value: 1.2123148
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418828781574628183, guid: 9bbb1a672e3041c47ad193f601d4ac49, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418828781574628183, guid: 9bbb1a672e3041c47ad193f601d4ac49, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.033842206
+      objectReference: {fileID: 0}
     - target: {fileID: 2514285019753736757, guid: 9bbb1a672e3041c47ad193f601d4ac49, type: 3}
       propertyPath: m_Name
       value: Player_Ver2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5435581516667795254, guid: 9bbb1a672e3041c47ad193f601d4ac49, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6895,7 +6911,7 @@ GameObject:
   - component: {fileID: 1131876658}
   - component: {fileID: 1131876657}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: EndPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7021,7 +7037,7 @@ Transform:
   m_GameObject: {fileID: 1131876656}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.46, y: -4.01, z: 0}
+  m_LocalPosition: {x: 8.12, y: -4.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
