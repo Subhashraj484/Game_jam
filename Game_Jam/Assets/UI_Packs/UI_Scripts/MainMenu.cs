@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class MainMenu : MonoBehaviour
     {
         LevelManager.Instance.LoadScene("TestTransition", "CrossFade");
         SoundManager.Instance.PlaySound2D("Buttons");
-        Debug.Log("super mario");
+        // Debug.Log("super mario");
     }
     public void LoadLevels(string LevelName)
     {
@@ -72,10 +73,14 @@ public class MainMenu : MonoBehaviour
         audioMixer.GetFloat("SFX", out float sfxVolume);
         PlayerPrefs.SetFloat("SFX", sfxVolume);
     }
- 
+    
     public void LoadVolume()
     {
         musicSlider.value = PlayerPrefs.GetFloat("MUSICK");
         sfxSlider.value = PlayerPrefs.GetFloat("SFX");
+    }
+    public void RetryGame()
+    {
+        LevelManager.Instance.LoadScene("UI_Levels", "CrossFade");
     }
 }
