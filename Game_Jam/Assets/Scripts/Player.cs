@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IGravityBoxClient
+public class Player : MonoBehaviour, IGravityBoxClient , IPreassueSwitchClient
 {
     // Start is called before the first frame update
 
@@ -252,5 +252,10 @@ public class Player : MonoBehaviour, IGravityBoxClient
         yield return new WaitForSeconds(dashTime);
         isDashing = false;
 
+    }
+
+    public void EnableDash()
+    {
+        canDash = true;
     }
 }

@@ -1,7 +1,7 @@
 
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D) ,typeof(FixedJoint2D))]
-public class PullBox : MonoBehaviour, IInteractable
+public class PullBox : MonoBehaviour, IInteractable , IPreassueSwitchClient
 {
     FixedJoint2D fixedJoint2D;
     private void Start() {

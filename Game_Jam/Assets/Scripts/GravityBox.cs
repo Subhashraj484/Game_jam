@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class GravityBox : MonoBehaviour
+public class GravityBox : MonoBehaviour , IPreassueSwitchClient
 {
     [SerializeField] BoxType boxType;
     Rigidbody2D rb;
