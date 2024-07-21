@@ -1,13 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using System;
-using Unity.VisualScripting;
+
 public class InputManager : MonoBehaviour
 {
     float horizontal ;
     public event EventHandler OnJump;
     public event EventHandler OnInteract;
+
+
+    [SerializeField] bool TriggerOnFirstMove;
 
     public static InputManager Instance {get ; private set;}
 
@@ -17,6 +19,8 @@ public class InputManager : MonoBehaviour
 
     private void Update() {
         horizontal = Input.GetAxis("Horizontal");
+
+
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
@@ -29,6 +33,8 @@ public class InputManager : MonoBehaviour
             OnInteract?.Invoke(this , EventArgs.Empty);
         }
     }
+
+
 
     public float Horizontal => horizontal;
 }

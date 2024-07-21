@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7161180800791329636}
   - component: {fileID: 1442893969929852124}
   - component: {fileID: 5893305925592671045}
+  - component: {fileID: 8000916378655402618}
   m_Layer: 3
   m_Name: Gravity_Box (13)
   m_TagString: Untagged
@@ -172,3 +173,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxType: 1
+--- !u!114 &8000916378655402618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3958085915760452550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0014f7500269564e8de9c05dcc6a951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityBox: {fileID: 5893305925592671045}

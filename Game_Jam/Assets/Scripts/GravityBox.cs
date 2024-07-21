@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,6 +7,12 @@ public class GravityBox : MonoBehaviour
 
     [SerializeField] BoxType boxType;
     Rigidbody2D rb;
+    public event EventHandler<OnInteractEventArgs> OnInteract;
+
+    public class OnInteractEventArgs :EventArgs
+    {
+        public BoxType boxType;
+    }
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -45,6 +52,8 @@ public class GravityBox : MonoBehaviour
             case BoxType.Fall :
                 rb.isKinematic = false;
                 rb.gravityScale = 1;
+
+
             break;
 
             case BoxType.Destroy :
@@ -53,9 +62,13 @@ public class GravityBox : MonoBehaviour
 
         }
 
+        OnInteract?.Invoke(this , new OnInteractEventArgs {
+            boxType = boxType
+        });
+
     }
 
-    enum BoxType
+    public enum BoxType
     {
         Fall , 
         Destroy

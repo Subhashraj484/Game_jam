@@ -5362,18 +5362,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1132483066349063273, guid: e497bc82363e37548b3d6175668caec2, type: 3}
-      propertyPath: canJump
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1132483066349063273, guid: e497bc82363e37548b3d6175668caec2, type: 3}
-      propertyPath: interactables.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 1132483066349063273, guid: e497bc82363e37548b3d6175668caec2, type: 3}
-      propertyPath: platformLayer.m_Bits
-      value: 200
-      objectReference: {fileID: 0}
     - target: {fileID: 2514285019753736757, guid: e497bc82363e37548b3d6175668caec2, type: 3}
       propertyPath: m_Name
       value: Player_Ver2

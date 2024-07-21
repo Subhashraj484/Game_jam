@@ -1,6 +1,7 @@
 using System;
 using System.Linq.Expressions;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -49,6 +50,10 @@ public class Player : MonoBehaviour, IGravityBoxClient
 
     bool canPush;
 
+    bool stop;
+
+    public event EventHandler OnPlayerJump;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -66,12 +71,16 @@ public class Player : MonoBehaviour, IGravityBoxClient
             isJumping = true;
             jumped = true;
             moveVelocity.x = forwardJumpSpeed * Mathf.Sign(x); // Apply forward motion during jump
+
+            OnPlayerJump?.Invoke(this , EventArgs.Empty);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if(!stop)
         x = InputManager.Instance.Horizontal;
         float currentSpeed = isGrounded ? maxSpeed : airSpeed;
 
@@ -91,6 +100,8 @@ public class Player : MonoBehaviour, IGravityBoxClient
         {
             moveVelocity = Vector2.Lerp(moveVelocity, targetVelocity, currentAccleration * Time.deltaTime);
         }
+
+
 
         rb.velocity = new Vector2(moveVelocity.x, y);
 
@@ -196,5 +207,16 @@ public class Player : MonoBehaviour, IGravityBoxClient
     public void EnablePushAbility()
     {
         canPush = true;
+    }
+
+    public void StartToMove()
+    {
+        stop = false;
+    }
+
+    public void Stop()
+    {
+        stop = true;
+        x = 0;
     }
 }
