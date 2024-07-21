@@ -1,9 +1,5 @@
 using System;
-using System.Linq.Expressions;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IGravityBoxClient
@@ -32,7 +28,7 @@ public class Player : MonoBehaviour, IGravityBoxClient
 
     [SerializeField] LayerMask platformLayer;
     [SerializeField] float boxcastDistance = 1f;
-    [SerializeField] float forwardJumpSpeed = 2f; // New variable for forward speed during jump
+    [SerializeField] float forwardJumpSpeed = 2f; 
     float x;
     Vector2 targetVelocity;
     Vector2 moveVelocity;
@@ -51,8 +47,13 @@ public class Player : MonoBehaviour, IGravityBoxClient
     bool canPush;
 
     bool stop;
+    bool isDashing;
+    [SerializeField] bool canDash;
 
     public event EventHandler OnPlayerJump;
+    [SerializeField] float dashSpeed;
+    [SerializeField] float dashTime;
+    float dashDirection;
 
     void Start()
     {
@@ -61,6 +62,24 @@ public class Player : MonoBehaviour, IGravityBoxClient
         SetUpJumpProperties();
         InputManager.Instance.OnJump += HandelJump;
         InputManager.Instance.OnInteract += HandelInteraction;
+        InputManager.Instance.OnDash += HandelDash;
+
+    }
+
+    private void HandelDash(object sender, EventArgs e)
+    {
+        if(!canDash) return ;
+
+        Debug.Log("ksdjvhksdjvgb");
+
+
+        float x2 = InputManager.Instance.Horizontal;
+        if(x2 == 0) x2 = 1;
+
+        dashDirection = x2;
+
+        StartCoroutine(Dash());
+
     }
 
     private void HandelJump(object sender, EventArgs e)
@@ -70,8 +89,7 @@ public class Player : MonoBehaviour, IGravityBoxClient
             y = initialVelocity;
             isJumping = true;
             jumped = true;
-            moveVelocity.x = forwardJumpSpeed * Mathf.Sign(x); // Apply forward motion during jump
-
+            moveVelocity.x = forwardJumpSpeed * Mathf.Sign(x); 
             OnPlayerJump?.Invoke(this , EventArgs.Empty);
         }
     }
@@ -82,6 +100,7 @@ public class Player : MonoBehaviour, IGravityBoxClient
 
         if(!stop)
         x = InputManager.Instance.Horizontal;
+
         float currentSpeed = isGrounded ? maxSpeed : airSpeed;
 
         if (Mathf.Abs(x) > 0.1f)
@@ -95,19 +114,25 @@ public class Player : MonoBehaviour, IGravityBoxClient
 
         float currentAccleration = (Mathf.Abs(x) > 0.1f) ? accleration : deccleration;
 
-        // Adjust horizontal velocity only if not jumping
         if (!isJumping)
         {
             moveVelocity = Vector2.Lerp(moveVelocity, targetVelocity, currentAccleration * Time.deltaTime);
         }
 
 
+        if(!isDashing)
+        {
 
-        rb.velocity = new Vector2(moveVelocity.x, y);
+            rb.velocity = new Vector2(moveVelocity.x, y);
+        }
+        else
+        {
+            rb.velocity = new Vector2(dashDirection*dashSpeed, 0);
 
+        }
+
+        if(!isDashing)
         Handelgravity();
-
-
 
         if(x != 0)
         {
@@ -218,5 +243,14 @@ public class Player : MonoBehaviour, IGravityBoxClient
     {
         stop = true;
         x = 0;
+    }
+
+    IEnumerator Dash()
+    {
+        isDashing = true;
+        canDash = false;
+        yield return new WaitForSeconds(dashTime);
+        isDashing = false;
+
     }
 }
